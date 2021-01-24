@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "83638116181",
+    "project_id": "king-chat-dff28",
+    "storage_bucket": "king-chat-dff28.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83638116181:android:70588e3ef711dc9651d9dc",
+        "android_client_info": {
+          "package_name": "com.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "83638116181-bephg7r2t180f5a55luunor77rfaip4g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAV7wC1p_7dvW_BI3IYQwFremY3eQsNhHA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "83638116181-bephg7r2t180f5a55luunor77rfaip4g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "83638116181-2tpsq22ks7a5c5phlu3r6jrr0vjh6hkk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kiansalehi.kingchat"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
