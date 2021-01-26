@@ -4,8 +4,7 @@ import {IconButton, Title} from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import {AuthContext} from '../navigation/AuthProvider';
-import { color } from 'react-native-reanimated';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+
 
 export default function SignupScreen({navigation}) {
   const [email, setEmail] = useState('');

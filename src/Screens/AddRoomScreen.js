@@ -14,7 +14,12 @@ export default function AddRoomScreen({navigation}) {
         .add({
           name: roomName,
         })
-        .then(() => {
+        .then((docRef) => {
+          docRef.collection('MESSAGES').add({
+            text: `${roomName} created. Welcome!`,
+            createdAt: new Date().getTime(),
+            system: true
+          })
           navigation.navigate('Home');
         }).catch(e=>{console.log(e)});
     }

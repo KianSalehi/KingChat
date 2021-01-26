@@ -1,9 +1,9 @@
 import React,{useState, useEffect} from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
+import {View, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import { List, Divider } from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
-
 import Loading from '../components/Loading'
+
 
 export default function HomeScreen({navigation}){
     const [threads, setThreads] = useState([]);
@@ -39,6 +39,9 @@ export default function HomeScreen({navigation}){
             keyExtractor={item=>item._id}
             ItemSeperatorComponent={()=><Divider/>}
             renderItem={({item})=>(
+                <TouchableOpacity
+                onPress={()=>navigation.navigate('Room', {thread:item})}
+                >
                 <List.Item
                 title={item.name}
                 description = 'Item description'
@@ -47,6 +50,7 @@ export default function HomeScreen({navigation}){
                 descriptionStyle={styles.listDescription}
                 descriptionNumberOfLines={1}
                 />
+                </TouchableOpacity>
             )}
             />
         </View>
