@@ -1,7 +1,7 @@
 import React,{useState, useEffect, useContext} from 'react';
 import {IconButton} from 'react-native-paper';
 import {ActivityIndicator, View, StyleSheet} from 'react-native';
-import {GiftedChat, Bubble, Send} from 'react-native-gifted-chat';
+import {GiftedChat, Bubble, Send, SystemMessage} from 'react-native-gifted-chat';
 import {AuthContext} from '../navigation/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
 
@@ -25,9 +25,40 @@ export default function RoomScreen({ route }){
         }
     }
 ]);
+
     useEffect(()=>{
-        console.log({user})
+        const messagesListener = firestore()
+        .collection('THREADS')
+        .doc(thread._id)
+        .collection('MESSAGES')
+        .orderBy('createdAt', 'desc')
+        .onSnapshot(querySnapshot=>{
+            const messages = querySnapshot.docs.map(doc=>{
+                const firebaseData = doc.data();
+                
+                const data = {
+                    _id: doc.id,
+                    text:'',
+                    createdAt: new Date().getTime(),
+                    ...firebaseData
+                };
+
+                if (!firebaseData.system){
+                    data.user={
+                        ...firebaseData.user,
+                        name:firebaseData.user.email
+                    };
+                }
+
+                return data;
+            });
+
+            setMessages(messages);
+        });
+        return () => messagesListener();
     }, []);
+
+
 //Helper Message bubbles function
     function renderBubble(props){
         return (
@@ -75,6 +106,16 @@ export default function RoomScreen({ route }){
             </View>
         );
     }
+    //helper rendering system message
+    function renderSystemMessage(props){
+        return(
+            <SystemMessage
+                {...props}
+                wrapperStyle={styles.systemMessageWrapper}
+                textStyle={styles.systemMessageText}
+            />
+        )
+    }
 //Helper send message function
     async function handleSend(messages){
         const text = messages[0].text;
@@ -108,8 +149,8 @@ export default function RoomScreen({ route }){
     return (
         <GiftedChat
         messages={messages}
-        onSend = {newMessage=>handleSend(newMessage)}
-        user={{_id:1, name: 'User Test'}}
+        onSend = {handleSend}
+        user={{_id: currentUser.uid}}
         renderBubble={renderBubble}
         placeholder='Type your message here'
         showUserAvatar
@@ -118,6 +159,7 @@ export default function RoomScreen({ route }){
         scrollToBottom
         scrollToBottomComponent={scrollToBottomComponent}
         renderLoading={renderLoading}
+        renderSystemMessage={renderSystemMessage}
         />
     );
 
@@ -136,5 +178,15 @@ const styles=StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
-      }
+      },
+      systemMessageText: {
+        fontSize: 14,
+        color: '#fff',
+        fontWeight: 'bold'
+      },
+      systemMessageWrapper: {
+        backgroundColor: '#6646ee',
+        borderRadius: 4,
+        padding: 5
+      },
 })

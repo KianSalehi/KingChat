@@ -13,10 +13,14 @@ export default function AddRoomScreen({navigation}) {
         .collection('THREADS')
         .add({
           name: roomName,
+          latestMessage:{
+            text:`You have joined the room ${roomName}.`,
+            createdAt: new Date().getTime()
+          }
         })
         .then((docRef) => {
           docRef.collection('MESSAGES').add({
-            text: `${roomName} created. Welcome!`,
+            text: `You have joined the room ${roomName}.`,
             createdAt: new Date().getTime(),
             system: true
           })
