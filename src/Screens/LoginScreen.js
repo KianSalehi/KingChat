@@ -28,14 +28,14 @@ export default function LoginScreen({navigation}) {
         title="Login"
         modeValue="contained"
         labelStyle={styles.loginButtonLable}
-        color='#6646ee'
+        color="#6646ee"
         onPress={() => login(email, password)}
       />
       <FormButton
         title="New user? Join here"
         modeValue="text"
         uppercase={false}
-        color='#6646ee'
+        color="#6646ee"
         labelStyle={styles.navButtonText}
         onPress={() => navigation.navigate('Signup')}
       />
@@ -53,11 +53,11 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 24,
     marginBottom: 10,
-    color: '#202111'
+    color: '#202111',
   },
   loginButtonLable: {
     fontSize: 22,
-    color:'#ffffff'
+    color: '#ffffff',
   },
   navButtonText: {
     fontSize: 16,

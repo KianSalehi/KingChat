@@ -13,19 +13,22 @@ export default function AddRoomScreen({navigation}) {
         .collection('THREADS')
         .add({
           name: roomName,
-          latestMessage:{
-            text:`You have joined the room ${roomName}.`,
-            createdAt: new Date().getTime()
-          }
+          latestMessage: {
+            text: `You have joined the room ${roomName}.`,
+            createdAt: new Date().getTime(),
+          },
         })
         .then((docRef) => {
           docRef.collection('MESSAGES').add({
             text: `You have joined the room ${roomName}.`,
             createdAt: new Date().getTime(),
-            system: true
-          })
+            system: true,
+          });
           navigation.navigate('Home');
-        }).catch(e=>{console.log(e)});
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     }
   }
   return (

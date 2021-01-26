@@ -5,7 +5,6 @@ import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import {AuthContext} from '../navigation/AuthProvider';
 
-
 export default function SignupScreen({navigation}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -30,14 +29,14 @@ export default function SignupScreen({navigation}) {
         title="Signup"
         modeValue="contained"
         labelStyle={styles.loginButtonLabel}
-        color='#6646ee'
+        color="#6646ee"
         onPress={() => register(email, password)}
       />
       <IconButton
         icon="keyboard-backspace"
         size={30}
         style={styles.navButton}
-        color='#6646ee'
+        color="#6646ee"
         onPress={() => navigation.goBack()}
       />
     </View>
@@ -53,11 +52,11 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 24,
     marginBottom: 10,
-    color: '#202111'
+    color: '#202111',
   },
   loginButtonLabel: {
     fontSize: 22,
-    color:'#ffffff'
+    color: '#ffffff',
   },
   navButtonText: {
     fontSize: 18,
@@ -65,7 +64,7 @@ const styles = StyleSheet.create({
   navButton: {
     marginTop: 10,
   },
-  labelStyle:{
-      color:'grey'
-  }
+  labelStyle: {
+    color: 'grey',
+  },
 });
