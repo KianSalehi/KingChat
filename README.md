@@ -1,4 +1,6 @@
 # KingChat
+[![GitHub](https://img.shields.io/github/license/kiansalehi/kingchat)](https://github.com/KianSalehi/KingChat/blob/main/LICENSE)
+
 A chat application made with React Native and Firebase.
 
 ## Use
