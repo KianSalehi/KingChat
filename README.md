@@ -3,6 +3,7 @@ A chat application made with React Native and Firebase.
 
 ## Use
 Clone the repository, and with the use of terminal or command line execute:
+
 Android:
 ```bash
 npx react-native run-android
